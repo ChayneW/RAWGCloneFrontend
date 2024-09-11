@@ -60,7 +60,7 @@
 // ###################
 
 const LOCAL_API_URL = 'http://localhost:5250/games';
-const PRODUCTION_API_URL = process.env.NEXT_PUBLIC_RAILWAY_API_URL || '';
+const PRODUCTION_API_URL = process.env.NEXT_RAILWAY_API_URL || '';
 
 export const fetchGames = async () => {
     try {
