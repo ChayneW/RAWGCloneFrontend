@@ -1,0 +1,10 @@
+cosmetic:
+    - use image as background overlay for modal pop up
+    - on hover: have div extend with more info??
+
+parent_platforms: 
+    - add to backend, find svg to be added to details if game is on platform.
+
+possible continous loading like anime app?
+
+find ways to find trending? or top 100?
