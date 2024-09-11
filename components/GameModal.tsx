@@ -128,6 +128,7 @@ const GameModal = ({ gameId, onClose }: GameModalProps) => {
     try {
       setLoading(true);
       const details = await fetchDetails(gameId);
+      console.log( "details:", details)
       setGameDetail(details);
     } catch (err: unknown) {
       if (err instanceof Error) {
