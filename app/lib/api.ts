@@ -15,7 +15,6 @@
 
 // ###################
 
-const detailsURL = process.env.N
 
 export const fetchGames = async () => {
     try {
@@ -33,8 +32,14 @@ export const fetchGames = async () => {
 };
 
 export const fetchDetails = async (id: number) => {
+    
+    const url = `${process.env.NEXT_PUBLIC_RAILWAY_API_URL}/${id}`;
+    console.log('Fetching details from URL:', url);
+    
     try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_RAILWAY_API_URL}/${id}`);
+        // const response = await fetch(`${process.env.NEXT_PUBLIC_RAILWAY_API_URL}/${id}`);
+        
+        const response = await fetch(url);
         console.log('Response status:', response.status);
         if (!response.ok) {
             throw new Error('Network response was not ok');
