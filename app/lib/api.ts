@@ -59,8 +59,71 @@
 
 // ###################
 
+// const LOCAL_API_URL = 'http://localhost:5250/games';
+// // const PRODUCTION_API_URL = process.env.NEXT_PUBLIC_RAILWAY_API_URL || '';
+// const PRODUCTION_API_URL = process.env.RAILWAY_API_URL || '';
+
+// export const fetchGames = async () => {
+//     try {
+//         // First, try to call the local API
+//         const response = await fetch(LOCAL_API_URL);
+//         if (!response.ok) {
+//             throw new Error('Network response was not ok from localhost');
+//         }
+//         console.log('API call to localhost successful');
+//         const data = await response.json();
+//         return data;
+//     } catch (error) {
+//         console.error('Error fetching games from localhost:', error);
+
+//         // Fall back to the Railway-hosted API if the localhost call fails
+//         try {
+//             const response = await fetch(PRODUCTION_API_URL);
+//             if (!response.ok) {
+//                 throw new Error('Network response was not ok from production');
+//             }
+//             console.log('API call to production successful');
+//             const data = await response.json();
+//             return data;
+//         } catch (productionError) {
+//             console.error('Error fetching games from production:', productionError);
+//             return []; // Return an empty array if both calls fail
+//         }
+//     }
+// };
+
+// export const fetchDetails = async (id: number) => {
+//     try {
+//         // Try to call the local API first
+//         const response = await fetch(`${LOCAL_API_URL}/${id}`);
+//         if (!response.ok) {
+//             throw new Error('Network response was not ok from localhost');
+//         }
+//         console.log('API call to localhost successful');
+//         const data = await response.json();
+//         return data;
+//     } catch (error) {
+//         console.error('Error fetching game details from localhost:', error);
+
+//         // Fall back to the Railway-hosted API if the localhost call fails
+//         try {
+//             const response = await fetch(`${PRODUCTION_API_URL}/${id}`);
+//             if (!response.ok) {
+//                 throw new Error('Network response was not ok from production');
+//             }
+//             console.log('API call to production successful');
+//             const data = await response.json();
+//             return data;
+//         } catch (productionError) {
+//             console.error('Error fetching game details from production:', productionError);
+//             return null; // Return null if both calls fail
+//         }
+//     }
+// };
+
+
 const LOCAL_API_URL = 'http://localhost:5250/games';
-const PRODUCTION_API_URL = process.env.NEXT_RAILWAY_API_URL || '';
+const PRODUCTION_API_URL = process.env.NEXT_PUBLIC_RAILWAY_API_URL || '';
 
 export const fetchGames = async () => {
     try {
@@ -92,30 +155,31 @@ export const fetchGames = async () => {
 };
 
 export const fetchDetails = async (id: number) => {
-    try {
-        // Try to call the local API first
-        const response = await fetch(`${LOCAL_API_URL}/${id}`);
-        if (!response.ok) {
-            throw new Error('Network response was not ok from localhost');
-        }
-        console.log('API call to localhost successful');
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error fetching game details from localhost:', error);
-
-        // Fall back to the Railway-hosted API if the localhost call fails
         try {
-            const response = await fetch(`${PRODUCTION_API_URL}/${id}`);
+            // Try to call the local API first
+            const response = await fetch(`${LOCAL_API_URL}/${id}`);
             if (!response.ok) {
-                throw new Error('Network response was not ok from production');
+                throw new Error('Network response was not ok from localhost');
             }
-            console.log('API call to production successful');
+            console.log('API call to localhost successful');
             const data = await response.json();
             return data;
-        } catch (productionError) {
-            console.error('Error fetching game details from production:', productionError);
-            return null; // Return null if both calls fail
+        } catch (error) {
+            console.error('Error fetching game details from localhost:', error);
+    
+            // Fall back to the Railway-hosted API if the localhost call fails
+            try {
+                const response = await fetch(`${PRODUCTION_API_URL}/${id}`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok from production');
+                }
+                console.log('API call to production successful');
+                const data = await response.json();
+                return data;
+            } catch (productionError) {
+                console.error('Error fetching game details from production:', productionError);
+                return null; // Return null if both calls fail
+            }
         }
-    }
-};
+    };
+
