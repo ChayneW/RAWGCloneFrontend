@@ -133,7 +133,11 @@ interface GameDetail {
   id: number;
   name: string;
   description: string;
-  background_image: string; // Add this field to the GameDetail interface
+  background_image: string;
+  background_image_additional: string; // Add this field to the GameDetail interface
+  metacritic: number;
+  reviews_count: number;
+
 }
 
 const GameModal = ({ gameId, onClose }: GameModalProps) => {
@@ -192,7 +196,7 @@ const GameModal = ({ gameId, onClose }: GameModalProps) => {
           <motion.div
             className="relative w-[80vw] h-[80vh] max-w-[80vw] max-h-[80vh] bg-white rounded-lg shadow-lg overflow-hidden"
             style={{
-              backgroundImage: gameDetail?.background_image ? `url(${gameDetail.background_image})` : 'none',
+              backgroundImage: gameDetail?.background_image ? `url(${gameDetail.background_image})` : `url(${gameDetail?.background_image_additional})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
             }}
@@ -212,10 +216,12 @@ const GameModal = ({ gameId, onClose }: GameModalProps) => {
                 </button>
               </div>
               <div className="mt-6 h-full overflow-y-auto text-white">
-                <h2 className="text-lg font-semibold mb-4">Large Modal Content</h2>
-                <p className="mb-4">
+                <h2 className="text-lg font-semibold mb-4">{gameDetail?.name}</h2>
+                {/* <p className="mb-4">
                   {gameDetail?.name}
-                </p>
+                </p> */}
+                <h2 className="text-lg font-semibold mb-4">Metacritic: {gameDetail?.metacritic}</h2>
+                <h2 className="text-lg font-semibold mb-4">Reviews: {gameDetail?.reviews_count}</h2>
                 <p className="mb-4">
                 {gameDetail?.description ? parse(gameDetail.description) : ""}
                 </p>
