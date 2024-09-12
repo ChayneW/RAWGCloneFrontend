@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { MotionDiv, variants } from './MotionDiv';
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 //   const menuRef = useRef(null);
 
@@ -39,7 +39,7 @@ const Navbar = () => {
       animate='visible'
       transition={{
         // using index of card as a index timer to sequentially show cards:
-        delay: 3.5,
+        delay: .5,
         ease: 'easeInOut',
         duration: 1
       }}
@@ -48,19 +48,18 @@ const Navbar = () => {
         {/* <div className='px-10'> */}
 
           {/* Navbar for screen sizes lg and above */}
-          <div className={`max-lg:hidden lg:fixed top-0 z-40 w-full text-white transition-colors duration-300 ${isScrolled ? 'bg-transparent' : 'nav-color'}`}>
+          <div className={`max-lg:hidden lg:fixed top-0 z-40 w-full text-white transition-colors duration-300 ${isScrolled ? 'nav-color' : 'bg-transparent'}`}>
           {/* <div className={`max-lg:hidden lg:fixed top-0 z-20 w-full text-white transition-colors duration-300 ${isScrolled ? 'bg-black' : 'bg-transparent'}`}> */}
             <div className='flex justify-between p-2 px-5'>
               <div className='flex self-center'>
                 <Link href={'/'}>
-                  <Image
-                    width={50}
-                    height={50}
-                    src='/joshua-kettle-unsplash.jpg'
-                    // src={'/notch-fix-3-color-speak.png'}
-                    // src="/notch-fix.png"
-                    alt='Toggle Menu'
-                  />
+                <Image
+                  id='logo'
+                  src="https://res.cloudinary.com/db8opthjz/image/upload/v1703042739/chaynedev-high-logo-transparent_aescxi.png"
+                  height={150}
+                  width={100} 
+                  alt='banner'
+                />
                 </Link>
               </div>
 
@@ -76,7 +75,7 @@ const Navbar = () => {
           {/* Navbar for screen sizes max-lg */}
           <motion.div
             // className={`max-lg:fixed lg:hidden top-0 z-20 w-full text-white transition-colors duration-300 ${isScrolled ? 'bg-emerald-600' : 'bg-transparent'}`}
-            className={`max-lg:fixed lg:hidden top-0 z-20 w-full text-white transition-colors duration-300 ${isOpen || isScrolled ? 'bg-transparent' : 'nav-color'}`}
+            className={`max-lg:fixed lg:hidden top-0 z-30 w-full text-white transition-colors duration-300 ${ isScrolled ? 'nav-color' : 'bg-transparent'}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
@@ -110,9 +109,9 @@ const Navbar = () => {
             {/* Animated Menu */}
             <motion.div
               initial={{ height: 0, opacity: 0 }}
-              animate={isOpen ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
+              // animate={isOpen ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className={`${isOpen  ? 'pb-5' : ''}`}
+              // className={`${isOpen  ? 'pb-5' : ''}`}
 
             >
               <div className='flex flex-col pt-5'>
