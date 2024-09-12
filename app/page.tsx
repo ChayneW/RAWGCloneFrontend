@@ -2,7 +2,7 @@
 // import { fetchGames } from './lib/api';
 import GamesLoad from "@/components/GamesLoad";
 import { BentoGridThirdDemo } from "@/components/Bento";
-import { BackgroundBeamsWithCollisionDemo } from "@/components/Laser";
+// import { BackgroundBeamsWithCollisionDemo } from "@/components/Laser";
 
 
 // import { fetchGamesData } from '@/app/actions'; // Fetch server-side data

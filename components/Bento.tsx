@@ -4,9 +4,6 @@ import React from "react";
 import { BentoGrid, BentoGridItem } from "./ui/bento-grid";
 import {
   IconBoxAlignRightFilled,
-  IconClipboardCopy,
-  IconFileBroken,
-  IconSignature,
   IconTableColumn,
 } from "@tabler/icons-react";
 import { motion } from "framer-motion";
@@ -282,7 +279,7 @@ const SkeletonFive = () => {
           className="rounded-full h-10 w-10"
         />
         <h1 className="text-xs text-neutral-500">
-          Who's Live:
+          Who&apos;s Live:
         </h1>
       </motion.div>
 

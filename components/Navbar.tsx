@@ -8,7 +8,7 @@ import { MotionDiv, variants } from './MotionDiv';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const menuRef = useRef(null);
+//   const menuRef = useRef(null);
 
   // Function to toggle menu open/close
   const toggleMenu = () => {
