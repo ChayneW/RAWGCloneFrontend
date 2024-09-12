@@ -56,7 +56,7 @@ const Navbar = () => {
                   <Image
                     width={50}
                     height={50}
-                    src='/notch-fix-2-color.png'
+                    src='/joshua-kettle-unsplash.jpg'
                     // src={'/notch-fix-3-color-speak.png'}
                     // src="/notch-fix.png"
                     alt='Toggle Menu'

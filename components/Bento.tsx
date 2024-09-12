@@ -285,13 +285,67 @@ const SkeletonFive = () => {
           Who's Live:
         </h1>
       </motion.div>
+
       <motion.div
         variants={variantsSecond}
         className="flex flex-row rounded-full border border-neutral-100 dark:border-white/[0.2] p-2 items-center justify-end space-x-2 w-3/4 ml-auto bg-white dark:bg-black"
       >
-        <p className="text-xs text-neutral-500">Use PHP.</p>
-        <div className="h-6 w-6 rounded-full bg-gradient-to-r from-pink-500 to-violet-500 flex-shrink-0" />
+        <div>
+          <p className="text-xs text-neutral-500">John Playing:</p>
+          <p className="text-xs text-neutral-500">Black Ops 6</p>
+        </div>
+        <div>
+          <Image
+            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3540&q=80"
+            alt="avatar"
+            height="70"
+            width="100"
+            className="rounded-full h-10 w-10"
+          />
+        </div>
       </motion.div>
+
+      <motion.div
+        variants={variantsSecond}
+        className="flex flex-row rounded-full border border-neutral-100 dark:border-white/[0.2] p-2 items-center justify-end space-x-2 w-3/4 ml-auto bg-white dark:bg-black"
+      >
+        <div>
+          <p className="text-xs text-neutral-500">Phil Playing:</p>
+          <p className="text-xs text-neutral-500">Halo Reach</p>
+        </div>
+        <div>
+          <Image
+            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3540&q=80"
+            alt="avatar"
+            height="70"
+            width="100"
+            className="rounded-full h-10 w-10"
+          />
+        </div>
+      </motion.div>
+
+      <motion.div
+        variants={variantsSecond}
+        className="flex flex-row rounded-full border border-neutral-100 dark:border-white/[0.2] p-2 items-center justify-end space-x-2 w-3/4 ml-auto bg-white dark:bg-black"
+      >
+        <div>
+          <p className="text-xs text-neutral-500">Sarah Playing:</p>
+          <p className="text-xs text-neutral-500">Tekken 8</p>
+        </div>
+        {/* <div className="h-6 w-6 rounded-full bg-gradient-to-r from-pink-500 to-violet-500 flex-shrink-0" /> */}
+        <div>
+          <Image
+            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3540&q=80"
+            alt="avatar"
+            height="70"
+            width="100"
+            className="rounded-full h-10 w-10"
+          />
+        </div>
+      </motion.div>
+
+      
+
     </motion.div>
   );
 };
@@ -343,7 +397,7 @@ const items = [
   },
 
   {
-    title: "Text Summarization",
+    title: "Who's in Party:",
     description: (
       <span className="text-sm">
         Summarize your lengthy documents with AI technology.
