@@ -48,7 +48,7 @@ const Navbar = () => {
         {/* <div className='px-10'> */}
 
           {/* Navbar for screen sizes lg and above */}
-          <div className={`max-lg:hidden lg:fixed top-0 z-40 w-full text-white transition-colors duration-300 ${isScrolled ? 'bg-transparent' : 'bg-emerald-600'}`}>
+          <div className={`max-lg:hidden lg:fixed top-0 z-40 w-full text-white transition-colors duration-300 ${isScrolled ? 'bg-transparent' : 'nav-color'}`}>
           {/* <div className={`max-lg:hidden lg:fixed top-0 z-20 w-full text-white transition-colors duration-300 ${isScrolled ? 'bg-black' : 'bg-transparent'}`}> */}
             <div className='flex justify-between p-2 px-5'>
               <div className='flex self-center'>
@@ -75,7 +75,7 @@ const Navbar = () => {
           {/* Navbar for screen sizes max-lg */}
           <motion.div
             // className={`max-lg:fixed lg:hidden top-0 z-20 w-full text-white transition-colors duration-300 ${isScrolled ? 'bg-emerald-600' : 'bg-transparent'}`}
-            className={`max-lg:fixed lg:hidden top-0 z-20 w-full text-white transition-colors duration-300 ${isOpen || isScrolled ? 'bg-transparent' : 'bg-emerald-600'}`}
+            className={`max-lg:fixed lg:hidden top-0 z-20 w-full text-white transition-colors duration-300 ${isOpen || isScrolled ? 'bg-transparent' : 'nav-color'}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
@@ -85,7 +85,7 @@ const Navbar = () => {
                   <Image
                     width={30}
                     height={30}
-                    src='/notch-fix-2-color.png'
+                    src='/joshua-kettle-unsplash.jpg'
                     // src={'/notch-fix-3-color-speak.png'}
                     alt='Toggle Menu'
                   />
@@ -94,14 +94,15 @@ const Navbar = () => {
 
               {/* Hamburger Icon */}
               <div className='lg:hidden'>
-                <button onClick={toggleMenu}>
+                {/* <button onClick={toggleMenu}>
                   <Image
                     width={30}
                     height={30}
                     src={isOpen ? '/close.svg' : '/hamburger-2.svg'}
                     alt='Toggle Menu'
                   />
-                </button>
+                </button> */}
+                <h1>GAMEVAULT</h1>
               </div>
             </div>
 
