@@ -65,9 +65,10 @@ const Navbar = () => {
               </div>
 
               <div className='flex justify-around gap-5 items-center'>
-                <Link href={'#Artists'}><h1 className=''>New Releases</h1></Link>
+                <h1>GAMEVAULT</h1>
+                {/* <Link href={'#Artists'}><h1 className=''>New Releases</h1></Link>
                 <Link href={'#About'}><h1 className=''>About</h1></Link>
-                <Link href={'#Contact'}><h1 className=''>Lets Talk</h1></Link>
+                <Link href={'#Contact'}><h1 className=''>Lets Talk</h1></Link> */}
               </div>
             </div>
           </div>
@@ -115,9 +116,9 @@ const Navbar = () => {
 
             >
               <div className='flex flex-col pt-5'>
-                <Link href={'#Artists'}><h1 className='text-2xl'>New Releases</h1></Link>
+                {/* <Link href={'#Artists'}><h1 className='text-2xl'>New Releases</h1></Link>
                 <Link href={'#About'}><h1 className='text-2xl'>About</h1></Link>
-                <Link href={'#Contact'}><h1 className='text-2xl'>Lets Talk</h1></Link>
+                <Link href={'#Contact'}><h1 className='text-2xl'>Lets Talk</h1></Link> */}
                 
               </div>
             </motion.div>
