@@ -11,9 +11,9 @@ const Navbar = () => {
 //   const menuRef = useRef(null);
 
   // Function to toggle menu open/close
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  // const toggleMenu = () => {
+  //   setIsOpen(!isOpen);
+  // };
 
   useEffect(() => {
     const handleScroll = () => {
