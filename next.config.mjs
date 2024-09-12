@@ -7,6 +7,16 @@ const nextConfig = {
                 hostname: "media.rawg.io",
                 pathname: '**',
             },
+            {
+                protocol: 'https',
+                hostname: "pbs.twimg.com",
+                pathname: '**',
+            },
+            {
+                protocol: 'https',
+                hostname: "images.unsplash.com",
+                pathname: '**',
+            },
         ],
     }
 };

@@ -4,6 +4,7 @@ import Image from 'next/image';
 import GameModal from '@/components/GameModal';
 import { fetchGames } from '@/app/lib/api';
 import ScreenshotCarousel from '@/components/ScreenshotCarousel';
+import { AnimatedTooltipPreview } from './PeopleLine';
 
 interface Game {
   id: number;
@@ -65,7 +66,7 @@ const GamesLoad = () => {
         {games.map((game) => (
           <div
             key={game.id}
-            className="relative grid h-[500px] w-full card-grad cursor-pointer text-white rounded-2xl"
+            className="relative grid h-[600px] w-full card-grad cursor-pointer text-white rounded-2xl"
             onMouseEnter={() => handleMouseEnter(game.id)}
             onMouseLeave={handleMouseLeave}
             onClick={() => handleGameClick(game.id)}
@@ -95,12 +96,13 @@ const GamesLoad = () => {
                 />
               </div>
             )}
-            <div className='grid z-20 pl-20'>
+            <div className='grid z-20 text-center'>
               <h2 className='text-white'>{game.name}</h2>
               <p>Metacritic: {game.metacritic}</p>
               <p>Reviews: {game.reviews_count}</p>
               <p>Genres: {game.genres.map((genre) => genre.name).join(', ')}</p>
             </div>
+            <AnimatedTooltipPreview/>
           </div>
         ))}
       </div>
