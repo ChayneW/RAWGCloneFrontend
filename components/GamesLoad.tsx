@@ -65,18 +65,28 @@ const GamesLoad = () => {
         {games.map((game) => (
           <div
             key={game.id}
-            className="grid h-[500px] w-full p-5 bg-gray-500 cursor-pointer"
+            className="relative grid h-[500px] w-full card-grad cursor-pointer text-white rounded-2xl"
             onMouseEnter={() => handleMouseEnter(game.id)}
             onMouseLeave={handleMouseLeave}
             onClick={() => handleGameClick(game.id)}
           >
-            <h2>{game.name}</h2>
+            {/* Background Image with 50% opacity */}
+            <div
+              className="absolute inset-0 z-0 bg-center opacity-80 rounded-2xl"
+              style={{
+                backgroundImage: `url('/joshua-kettle-unsplash.jpg')`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                opacity: 0.8,  // 50% opacity
+              }}
+            />
+
             {hoveredGameId === game.id ? (
               <ScreenshotCarousel screenshots={game.short_screenshots || []} />
             ) : (
-              <div className="relative w-[100%] h-[300px]">
+              <div className="relative z-10 w-[100%] h-[300px]">
                 <Image
-                  className="rounded-2xl"
+                  className="rounded-t-2xl"
                   fill
                   priority
                   style={{ objectFit: 'cover' }}
@@ -85,15 +95,20 @@ const GamesLoad = () => {
                 />
               </div>
             )}
-            <p>Metacritic: {game.metacritic}</p>
-            <p>Reviews: {game.reviews_count}</p>
-            <p>Genres: {game.genres.map((genre) => genre.name).join(', ')}</p>
+            <div className='grid z-20 pl-20'>
+              <h2 className='text-white'>{game.name}</h2>
+              <p>Metacritic: {game.metacritic}</p>
+              <p>Reviews: {game.reviews_count}</p>
+              <p>Genres: {game.genres.map((genre) => genre.name).join(', ')}</p>
+            </div>
           </div>
         ))}
       </div>
 
       {selectedGameId !== null && (
+        <div className='fixed inset-0 z-50'>
         <GameModal gameId={selectedGameId} onClose={handleCloseModal} />
+        </div>
       )}
     </div>
   );
