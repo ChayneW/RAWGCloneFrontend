@@ -400,7 +400,7 @@ const items = [
     title: "Who's in Party:",
     description: (
       <span className="text-sm">
-        You're current friends online.
+        You&apos;re current friends online.
       </span>
     ),
     header: <SkeletonFive />,
