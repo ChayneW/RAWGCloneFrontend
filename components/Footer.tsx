@@ -8,7 +8,7 @@ import Image from 'next/image'
 const Footer = () => {
   return (
     <footer
-      className='w-full bg-[#10181B] h-[100px]'>
+      className='w-full bg-[#10181B] h-[100px] -z-10'>
       <hr></hr>
       <div className=' bg-[#10181B] max-container rounded-b-xl flex justify-between py-5 px-10'>
         {/* <p>© Ronin Steps</p> */}

@@ -59,6 +59,8 @@ const GamesLoad = () => {
     setHoveredGameId(null);
   };
 
+  const selectedGame = games.find(game => game.id === selectedGameId);
+
   return (
     <div>
       GamesLoad
@@ -107,9 +109,13 @@ const GamesLoad = () => {
         ))}
       </div>
 
-      {selectedGameId !== null && (
+      {selectedGameId !== null && selectedGame &&(
         <div className='fixed inset-0 z-50'>
-        <GameModal gameId={selectedGameId} onClose={handleCloseModal} />
+        <GameModal gameId={selectedGameId} 
+          onClose={handleCloseModal} 
+          screenshots={selectedGame.short_screenshots} // Pass screenshots here
+        
+        />
         </div>
       )}
     </div>

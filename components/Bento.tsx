@@ -11,18 +11,21 @@ import Image from "next/image";
 
 export function BentoGridThirdDemo() {
   return (
-    <BentoGrid className="max-w-6xl mx-auto md:auto-rows-[20rem]">
-      {items.map((item, i) => (
-        <BentoGridItem
-          key={i}
-          title={item.title}
-          description={item.description}
-          header={item.header}
-          className={cn("[&>p:text-lg]", item.className)}
-          icon={item.icon}
-        />
-      ))}
-    </BentoGrid>
+    <>
+      <h1 className="text-center text-white text-2xl p-5">Notifcations:</h1>
+      <BentoGrid className="max-w-6xl mx-auto md:auto-rows-[20rem] pb-20">
+        {items.map((item, i) => (
+          <BentoGridItem
+            key={i}
+            title={item.title}
+            description={item.description}
+            header={item.header}
+            className={cn("[&>p:text-lg]", item.className)}
+            icon={item.icon}
+          />
+        ))}
+      </BentoGrid>
+    </>
   );
 }
 
@@ -397,7 +400,7 @@ const items = [
     title: "Who's in Party:",
     description: (
       <span className="text-sm">
-        Summarize your lengthy documents with AI technology.
+        You're current friends online.
       </span>
     ),
     header: <SkeletonFive />,

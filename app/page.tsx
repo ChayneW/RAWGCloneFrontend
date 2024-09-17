@@ -7,13 +7,12 @@ import Hero from "@/components/Hero";
 
 export default async function Home() {
   return (
-    <div className="max-md:px-10 p-20">
-        <div>
+    <div className="max-md:px-10">
+        <div className="">
           <Hero/>
           <BentoGridThirdDemo/>
         </div>
         <GamesLoad/>
-        {/* <GameModal/> */}
     </div>
   );
 }
