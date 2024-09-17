@@ -12,7 +12,7 @@ import Image from "next/image";
 export function BentoGridThirdDemo() {
   return (
     <>
-      <h1 className="text-center text-white text-2xl p-5">Notifcations:</h1>
+      <h1 className="text-center text-white text-2xl p-5">Notifications:</h1>
       <BentoGrid className="max-w-6xl mx-auto md:auto-rows-[20rem] pb-20">
         {items.map((item, i) => (
           <BentoGridItem
