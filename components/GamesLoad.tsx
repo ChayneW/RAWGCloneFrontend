@@ -108,7 +108,7 @@ const GamesLoad = () => {
     return <div className='grid justify-center text-white py-32'>
       {/* <h1 className='text-center'>Loading...</h1> */}
       {/* <MiniLoader/> */}
-        <div className=''>
+        <div className='flex justify-center'>
           <LoaderUI/>
         </div>
       </div>;

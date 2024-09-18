@@ -115,7 +115,9 @@ const ScreenshotCarousel: React.FC<ScreenshotCarouselProps> = ({ screenshots }) 
 
         {/* Loader */}
         <div className="absolute bottom-2 left-0 right-0 flex justify-center z-[5] px-10">
-          <LoaderUI /> {/* Replace the progress bar with the loader */}
+          <div className='flex justify-center'>
+            <LoaderUI />
+          </div>
         </div>
       </div>
     </div>

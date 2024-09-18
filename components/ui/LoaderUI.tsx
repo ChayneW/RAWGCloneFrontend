@@ -21,7 +21,7 @@ const LoaderUI = () => {
 
         {/* <div className="loader"></div> */}
 
-        <div className="loader">
+        <div className="loader flex justify-center">
             <span className="bar"></span>
             <span className="bar"></span>
             <span className="bar"></span>
