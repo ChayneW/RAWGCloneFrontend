@@ -148,6 +148,7 @@ import { X } from "lucide-react";
 import { fetchDetails } from "@/app/lib/api";
 import parse from 'html-react-parser'; // Import the library
 import Image from "next/image";
+import LoaderUI from "./ui/LoaderUI";
 
 interface GameModalProps {
   gameId: number;
@@ -173,7 +174,7 @@ interface Screenshot {
 const GameModal = ({ gameId, onClose, screenshots }: GameModalProps) => {
   const [isOpen, setIsOpen] = useState(true);
   const [gameDetail, setGameDetail] = useState<GameDetail | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   const modalVariants = {
@@ -184,7 +185,7 @@ const GameModal = ({ gameId, onClose, screenshots }: GameModalProps) => {
 
   const getData = useCallback(async () => {
     try {
-      setLoading(true);
+      // setLoading(true);
       console.log('inside GAMEMODAL, PASSING ID:', gameId);
       const details = await fetchDetails(gameId);
       console.log('FINISHED making fetchDetails() call:');
@@ -212,6 +213,17 @@ const GameModal = ({ gameId, onClose, screenshots }: GameModalProps) => {
       onClose();
     }
   }, [isOpen, onClose]);
+
+  if (loading) {
+    return <div className='grid justify-center text-white py-32'>
+      {/* <h1 className='text-center'>Loading...</h1> */}
+      {/* <MiniLoader/> */}
+        <div className=''>
+          <LoaderUI/>
+        </div>
+      </div>;
+  }
+
 
   return (
     <AnimatePresence>
@@ -252,13 +264,13 @@ const GameModal = ({ gameId, onClose, screenshots }: GameModalProps) => {
                 <p className="mb-4">
                   {gameDetail?.description ? parse(gameDetail.description) : ""}
                 </p>
-                {loading && <p>Loading...</p>}
+                {loading && <LoaderUI/>}
                 {error && <p className="text-red-500">Error: {error}</p>}
                 
                 {/* Display screenshots */}
                 <h1 className="text-center font-semibold text-2xl">Screenshots:</h1>
 
-                <div className="grid mt-4 md:grid-cols-2">
+                <div className="grid mt-4 gap-10 md:grid-cols-2">
                   {screenshots.map((screenshot) => (
                     <>
                       <Image

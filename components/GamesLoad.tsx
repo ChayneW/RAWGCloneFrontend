@@ -5,6 +5,7 @@ import GameModal from '@/components/GameModal';
 import { fetchGames } from '@/app/lib/api';
 import ScreenshotCarousel from '@/components/ScreenshotCarousel';
 import { AnimatedTooltipPreview } from './PeopleLine';
+import LoaderUI from './ui/LoaderUI';
 
 interface Game {
   id: number;
@@ -12,8 +13,10 @@ interface Game {
   background_image: string;
   short_screenshots: Screenshot[];
   metacritic: number;
+  released: string;
   reviews_count: number;
   genres: Genre[];
+  parent_platforms: Platform[];
 }
 
 interface Screenshot {
@@ -26,15 +29,54 @@ interface Genre {
   name: string;
 }
 
+interface Platform {
+  platform: {
+    id: number;
+    name: string;
+    slug: string;
+  };
+}
+
+const platformRef: {[key: string] : string} = {
+  mac:"/icons/apple-icon.svg",
+  pc:"/icons/windows-icon.svg",
+  playstation:"/icons/playstation-icon.svg",
+  android:"/icons/android-icon.svg",
+  linux:"/icons/linux-icon.svg",
+  nintendo:"/icons/nintendo-icon.svg",
+  web:"/icons/web-icon.svg",
+  xbox:"/icons/xbox-icon.svg",
+  // :"/icons/"
+}
+// [
+//     {"android": "/icons/android-icon.svg"}, 
+// ]
+//   {"pc": "pc"}, 
+//   {"playstation"},
+//   {"xbox"},
+//   {"ios"},
+//   {"mac"},
+//   {"linux"},
+//   {"nintendo"},
+//   {"atari"},
+//   {"commodore-amiga"},
+//   {"sega"},
+//   {"3do"},
+//   {"neo-geo"},
+//   {"web"},
+// ]
+
 const GamesLoad = () => {
   const [games, setGames] = useState<Game[]>([]);
   const [selectedGameId, setSelectedGameId] = useState<number | null>(null);
   const [hoveredGameId, setHoveredGameId] = useState<number | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const loadGames = async () => {
       const fetchedGames = await fetchGames();
       setGames(fetchedGames);
+      setIsLoading(false);
     };
 
     loadGames();
@@ -61,14 +103,24 @@ const GamesLoad = () => {
 
   const selectedGame = games.find(game => game.id === selectedGameId);
 
+
+  if (isLoading) {
+    return <div className='grid justify-center text-white py-32'>
+      {/* <h1 className='text-center'>Loading...</h1> */}
+      {/* <MiniLoader/> */}
+        <div className=''>
+          <LoaderUI/>
+        </div>
+      </div>;
+  }
+
   return (
-    <div>
-      GamesLoad
-      <div className="grid lg:grid-cols-3 gap-5">
+    <div className='py-20 md:px-20'>
+      <div className="grid lg:grid-cols-3 gap-10">
         {games.map((game) => (
           <div
             key={game.id}
-            className="relative grid h-[600px] w-full card-grad cursor-pointer text-white rounded-2xl"
+            className="relative grid h-[650px] w-full card-grad cursor-pointer text-white rounded-2xl"
             onMouseEnter={() => handleMouseEnter(game.id)}
             onMouseLeave={handleMouseLeave}
             onClick={() => handleGameClick(game.id)}
@@ -98,11 +150,41 @@ const GamesLoad = () => {
                 />
               </div>
             )}
-            <div className='grid z-20 text-center'>
-              <h2 className='text-white'>{game.name}</h2>
-              <p>Metacritic: {game.metacritic}</p>
-              <p>Reviews: {game.reviews_count}</p>
-              <p>Genres: {game.genres.map((genre) => genre.name).join(', ')}</p>
+            <div className='grid z-20 text-center py-2'>
+              <h1 className='text-white text-2xl'>{game.name}</h1>
+              {/* <hr></hr> */}
+              <div className='px-5'>
+                <div className='flex py-2'>
+                  {game.parent_platforms.map((platform) => (
+                    <div key={platform.platform.id} className='mr-2'>
+                      <Image
+                        src={platformRef[platform.platform.slug] || '/icons/default.svg'} // Fallback to a default icon
+                        alt={platform.platform.name}
+                        width={20}
+                        height={20}
+                      />
+                    </div>
+                  ))}
+                </div>
+                <div className='grid py-2 gap-2'>
+                  <div className="games-load-details">
+                    <p>released:</p>
+                    <p>{game.released}</p>
+                  </div>
+                  <hr></hr>
+                  <div className="games-load-details">
+                    <p>Metacritic:</p>
+                    <p>{game.metacritic}</p>
+                  </div>
+                  <hr></hr>
+                  <div className="games-load-details">
+                    <p>Reviews:</p>
+                    <p>{game.reviews_count}</p>
+                  </div>
+                  <hr></hr>
+                  <p>Genres: {game.genres.map((genre) => genre.name).join(', ')}</p>
+                </div> 
+              </div>
             </div>
             <AnimatedTooltipPreview/>
           </div>
@@ -114,7 +196,6 @@ const GamesLoad = () => {
         <GameModal gameId={selectedGameId} 
           onClose={handleCloseModal} 
           screenshots={selectedGame.short_screenshots} // Pass screenshots here
-        
         />
         </div>
       )}

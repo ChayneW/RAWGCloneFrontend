@@ -8,3 +8,13 @@ parent_platforms:
 possible continous loading like anime app?
 
 find ways to find trending? or top 100?
+
+-add loader: 
+    gamesload component
+    gameModal component
+
+add boxes for gameModal for metacritic and other stats
+
+fix gamesload card with hr and grid to seperate info into 2 columns.
+
+- fix purple background for cards
