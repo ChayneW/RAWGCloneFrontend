@@ -158,7 +158,7 @@ const GamesLoad = () => {
                   {game.parent_platforms.map((platform) => (
                     <div key={platform.platform.id} className='mr-2'>
                       <Image
-                        src={platformRef[platform.platform.slug] || '/icons/default.svg'} // Fallback to a default icon
+                        src={platformRef[platform.platform.slug] || '/icons/web-icon.svg'} // Fallback to a default icon
                         alt={platform.platform.name}
                         width={20}
                         height={20}
