@@ -15,8 +15,10 @@ interface Game {
   metacritic: number;
   released: string;
   reviews_count: number;
+  rating: number;
   genres: Genre[];
   parent_platforms: Platform[];
+  added_by_status: AddedByStatus[];
 }
 
 interface Screenshot {
@@ -35,6 +37,15 @@ interface Platform {
     name: string;
     slug: string;
   };
+}
+
+interface AddedByStatus {
+  yet: number;
+  owned: number;
+  beaten: number;
+  toplay: number;
+  dropped: number;
+  playing: number;
 }
 
 const platformRef: {[key: string] : string} = {
