@@ -1,11 +1,12 @@
-'use client';
-import React, { useState, useEffect } from 'react';
+'use client'
+import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { useInView } from 'react-intersection-observer';
+import { fetchGames } from '@/app/lib/api';
 import Image from 'next/image';
 import GameModal from '@/components/GameModal';
-import { fetchGames } from '@/app/lib/api';
 import ScreenshotCarousel from '@/components/ScreenshotCarousel';
-import { AnimatedTooltipPreview } from './PeopleLine';
 import LoaderUI from './ui/LoaderUI';
+import { AnimatedTooltipPreview } from './PeopleLine';
 
 interface Game {
   id: number;
@@ -58,95 +59,85 @@ const platformRef: {[key: string] : string} = {
   web:"/icons/web-icon.svg",
   xbox:"/icons/xbox-icon.svg",
   // :"/icons/"
-}
-// [
-//     {"android": "/icons/android-icon.svg"}, 
-// ]
-//   {"pc": "pc"}, 
-//   {"playstation"},
-//   {"xbox"},
-//   {"ios"},
-//   {"mac"},
-//   {"linux"},
-//   {"nintendo"},
-//   {"atari"},
-//   {"commodore-amiga"},
-//   {"sega"},
-//   {"3do"},
-//   {"neo-geo"},
-//   {"web"},
-// ]
-
+} 
 const GamesLoad = () => {
   const [games, setGames] = useState<Game[]>([]);
   const [selectedGameId, setSelectedGameId] = useState<number | null>(null);
   const [hoveredGameId, setHoveredGameId] = useState<number | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isFetchingMoreGames, setIsFetchingMoreGames] = useState<boolean>(false); // Prevent multiple calls
+  const [page, setPage] = useState<number>(1);
+  const { ref, inView } = useInView();
+  const initialLoadRef = useRef(false);
 
-  useEffect(() => {
-    const loadGames = async () => {
-      const fetchedGames = await fetchGames();
-      setGames(fetchedGames);
-      setIsLoading(false);
-    };
+  // Fetch games from the API
+  const loadGames = useCallback(async (currentPage: number) => {
+    console.log('Fetching games for page:', currentPage);
+    setIsFetchingMoreGames(true);
 
-    loadGames();
+    const fetchedGames = await fetchGames(currentPage);
+    setGames((prevGames) => [...prevGames, ...fetchedGames]);
+
+    setIsFetchingMoreGames(false);
   }, []);
 
-  const handleGameClick = (id: number) => {
-    console.log('Game chosen:' + id);
-    setSelectedGameId(id);
-  };
+  // Initial load
+  useEffect(() => {
+    if (!initialLoadRef.current) {
+      initialLoadRef.current = true;
+      loadGames(1); // Load the first page of games
+    }
+  }, [loadGames]);
 
-  const handleCloseModal = () => {
-    console.log('Modal closed');
-    setSelectedGameId(null);
-  };
+  // Infinite scroll effect
+  useEffect(() => {
+    if (inView && !isLoading && !isFetchingMoreGames) {
+      console.log('Loading next page:', page + 1);
+      setPage((prevPage) => prevPage + 1);
+    }
+  }, [inView, isLoading, isFetchingMoreGames]);
 
-  const handleMouseEnter = (id: number) => {
-    console.log('Hovering:');
-    setHoveredGameId(id);
-  };
+  // Fetch games when page number changes
+  useEffect(() => {
+    if (page > 1) {
+      loadGames(page); // Only load games after initial page load
+    }
+  }, [page, loadGames]);
 
-  const handleMouseLeave = () => {
-    setHoveredGameId(null);
-  };
+  const handleGameClick = (id: number) => setSelectedGameId(id);
+  const handleCloseModal = () => setSelectedGameId(null);
 
-  const selectedGame = games.find(game => game.id === selectedGameId);
+  const selectedGame = games.find((game) => game.id === selectedGameId);
 
-
-  if (isLoading) {
-    return <div className='grid justify-center text-white py-32'>
-      {/* <h1 className='text-center'>Loading...</h1> */}
-      {/* <MiniLoader/> */}
-        <div className='flex justify-center'>
-          <LoaderUI/>
+  if (isLoading && games.length === 0) {
+    return (
+      <div className="grid justify-center text-white py-32">
+        <div className="flex justify-center">
+          <LoaderUI />
         </div>
-      </div>;
+      </div>
+    );
   }
 
   return (
-    <div className='py-20 md:px-20'>
+    <div className="py-20 md:px-20">
       <div className="grid lg:grid-cols-3 gap-10">
         {games.map((game) => (
           <div
             key={game.id}
             className="relative grid h-[650px] w-full card-grad cursor-pointer text-white rounded-2xl"
-            onMouseEnter={() => handleMouseEnter(game.id)}
-            onMouseLeave={handleMouseLeave}
+            onMouseEnter={() => setHoveredGameId(game.id)}
+            onMouseLeave={() => setHoveredGameId(null)}
             onClick={() => handleGameClick(game.id)}
           >
-            {/* Background Image with 50% opacity */}
             <div
               className="absolute inset-0 z-0 bg-center opacity-80 rounded-2xl"
               style={{
                 backgroundImage: `url('/joshua-kettle-unsplash.jpg')`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
-                opacity: 0.8,  // 50% opacity
               }}
             />
-
             {hoveredGameId === game.id ? (
               <ScreenshotCarousel screenshots={game.short_screenshots || []} />
             ) : (
@@ -161,15 +152,14 @@ const GamesLoad = () => {
                 />
               </div>
             )}
-            <div className='grid z-20 text-center py-2'>
-              <h1 className='text-white text-2xl'>{game.name}</h1>
-              {/* <hr></hr> */}
+            <div className="grid z-20 text-center py-2">
+              <h1 className="text-white text-2xl">{game.name}</h1>
               <div className='px-5'>
                 <div className='flex py-2'>
-                  {game.parent_platforms.map((platform) => (
+                   {game.parent_platforms.map((platform) => (
                     <div key={platform.platform.id} className='mr-2'>
                       <Image
-                        src={platformRef[platform.platform.slug] || '/icons/web-icon.svg'} // Fallback to a default icon
+                        src={platformRef[platform.platform.slug] || '/icons/web-icon.svg'}
                         alt={platform.platform.name}
                         width={20}
                         height={20}
@@ -182,32 +172,37 @@ const GamesLoad = () => {
                     <p>released:</p>
                     <p>{game.released}</p>
                   </div>
-                  <hr></hr>
+                  <hr />
                   <div className="games-load-details">
                     <p>Metacritic:</p>
                     <p>{game.metacritic}</p>
                   </div>
-                  <hr></hr>
+                  <hr />
                   <div className="games-load-details">
                     <p>Reviews:</p>
                     <p>{game.reviews_count}</p>
                   </div>
-                  <hr></hr>
+                  <hr />
                   <p>Genres: {game.genres.map((genre) => genre.name).join(', ')}</p>
                 </div> 
               </div>
             </div>
-            <AnimatedTooltipPreview/>
+            <AnimatedTooltipPreview />
           </div>
         ))}
       </div>
 
-      {selectedGameId !== null && selectedGame &&(
-        <div className='fixed inset-0 z-50'>
-        <GameModal gameId={selectedGameId} 
-          onClose={handleCloseModal} 
-          screenshots={selectedGame.short_screenshots} // Pass screenshots here
-        />
+      <div ref={ref} className="grid justify-center py-10">
+        {isFetchingMoreGames && <LoaderUI />}
+      </div>
+
+      {selectedGameId !== null && selectedGame && (
+        <div className="fixed inset-0 z-50">
+          <GameModal
+            gameId={selectedGameId}
+            onClose={handleCloseModal}
+            screenshots={selectedGame.short_screenshots}
+          />
         </div>
       )}
     </div>
@@ -215,3 +210,4 @@ const GamesLoad = () => {
 };
 
 export default GamesLoad;
+

@@ -2,9 +2,14 @@
 
 const baseURL= process.env.NEXT_PUBLIC_RAILWAY_API_URL
 
-export const fetchGames = async () => {
+// export const fetchGames = async () => {
+export const fetchGames = async (page = 1) => {
     try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_RAILWAY_API_URL}`); // Update URL if needed
+        // const response = await fetch(`${process.env.NEXT_PUBLIC_RAILWAY_API_URL}`); // Update URL if needed
+        console.log(`api.ts link: ${process.env.NEXT_PUBLIC_RAILWAY_API_URL}?page=${page}`);
+        
+        const response = await fetch(`${process.env.NEXT_PUBLIC_RAILWAY_API_URL}?page=${page}`); // Update URL if needed
+        // const response = await fetch(`${process.env.NEXT_PUBLIC_RAILWAY_API_URL}?page=${page}`); // Update URL if needed
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
