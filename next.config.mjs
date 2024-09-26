@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    env:{
+        RAILWAY_API_URL: process.env.RAILWAY_API_URL
+    },
     images: {
         remotePatterns: [
             {
