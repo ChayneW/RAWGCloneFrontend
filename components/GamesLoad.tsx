@@ -131,7 +131,7 @@ const GamesLoad = () => {
         {games.map((game) => (
           <div
             key={game.id}
-            className="relative grid h-[650px] w-full card-grad cursor-pointer text-white rounded-2xl"
+            className="relative grid h-[700px] w-full card-grad cursor-pointer text-white rounded-2xl"
             onMouseEnter={() => setHoveredGameId(game.id)}
             onMouseLeave={() => setHoveredGameId(null)}
             onClick={() => handleGameClick(game.id)}
