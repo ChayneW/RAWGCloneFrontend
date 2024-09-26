@@ -64,7 +64,7 @@ const GamesLoad = () => {
   const [games, setGames] = useState<Game[]>([]);
   const [selectedGameId, setSelectedGameId] = useState<number | null>(null);
   const [hoveredGameId, setHoveredGameId] = useState<number | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  // const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isFetchingMoreGames, setIsFetchingMoreGames] = useState<boolean>(false); // Prevent multiple calls
   const [page, setPage] = useState<number>(1);
   const { ref, inView } = useInView();
@@ -91,11 +91,13 @@ const GamesLoad = () => {
 
   // Infinite scroll effect
   useEffect(() => {
-    if (inView && !isLoading && !isFetchingMoreGames) {
+    // if (inView && !isLoading && !isFetchingMoreGames) {
+    if (inView && !isFetchingMoreGames) {
       console.log('Loading next page:', page + 1);
       setPage((prevPage) => prevPage + 1);
     }
-  }, [inView, isLoading, isFetchingMoreGames]);
+  // }, [inView, isLoading, isFetchingMoreGames]);
+  }, [inView, isFetchingMoreGames]);
 
   // Fetch games when page number changes
   useEffect(() => {
@@ -109,7 +111,8 @@ const GamesLoad = () => {
 
   const selectedGame = games.find((game) => game.id === selectedGameId);
 
-  if (isLoading && games.length === 0) {
+  // if (isLoading && games.length === 0) {
+  if (isFetchingMoreGames && games.length === 0) {
     return (
       <div className="grid justify-center text-white py-32">
         <div className="flex justify-center">

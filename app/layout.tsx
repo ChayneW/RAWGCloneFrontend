@@ -20,6 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className="bg-[#171717]"
+        // className=""
       >
         <Navbar/>
         {children}

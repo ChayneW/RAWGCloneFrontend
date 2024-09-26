@@ -64,10 +64,9 @@ const Navbar = () => {
               </div>
 
               <div className='flex justify-around gap-5 items-center'>
-                <h1>GAMEVAULT</h1>
-                {/* <Link href={'#Artists'}><h1 className=''>New Releases</h1></Link>
-                <Link href={'#About'}><h1 className=''>About</h1></Link>
-                <Link href={'#Contact'}><h1 className=''>Lets Talk</h1></Link> */}
+                <Link href={'/'}>
+                  <h1 className='text-lg'>GAMEVAULT</h1>
+                </Link>
               </div>
             </div>
           </div>
