@@ -156,6 +156,7 @@ const GameModal = ({ gameId, onClose, screenshots }: GameModalProps) => {
                   {gameDetail?.parent_platforms.map((platform) => (
                     <div key={platform.platform.id} className='mr-2'>
                       <Image
+                        priority
                         src={platformRef[platform.platform.slug] || '/icons/web-icon.svg'} // Fallback to a default icon
                         alt={platform.platform.name}
                         width={30}
@@ -175,6 +176,7 @@ const GameModal = ({ gameId, onClose, screenshots }: GameModalProps) => {
                   <div className="flex justify-between bg-slate-600 gap-5 p-5 rounded-2xl">
                     <div className="grid justify-center text-center">
                       <Image
+                        priority
                         className="flex mx-auto"
                         alt="want-game-img"
                         width={50}
@@ -187,6 +189,7 @@ const GameModal = ({ gameId, onClose, screenshots }: GameModalProps) => {
 
                     <div className="grid justify-center text-center">
                       <Image
+                        priority
                         className="flex mx-auto"
                         alt="want-game-img"
                         width={50}
@@ -200,6 +203,7 @@ const GameModal = ({ gameId, onClose, screenshots }: GameModalProps) => {
 
                     <div className="grid justify-center text-center">
                       <Image
+                        priority
                         className="flex mx-auto"
                         alt="want-game-img"
                         width={50}
@@ -232,6 +236,7 @@ const GameModal = ({ gameId, onClose, screenshots }: GameModalProps) => {
                         className="flex justify-center"
                       >
                         <Image
+                          priority
                           key={screenshot.id}
                           src={screenshot.image}
                           alt={`Screenshot ${screenshot.id}`}
@@ -240,6 +245,7 @@ const GameModal = ({ gameId, onClose, screenshots }: GameModalProps) => {
                           className="mb-2 rounded-lg md:hidden"
                         />
                         <Image
+                          priority
                           key={screenshot.id}
                           src={screenshot.image}
                           alt={`Screenshot ${screenshot.id}`}
@@ -250,13 +256,6 @@ const GameModal = ({ gameId, onClose, screenshots }: GameModalProps) => {
                       </div>
                     ))}
                   </div>
-
-                  {/* <FloatingDockScreenshots
-                    screenshots={screenshots}
-                    desktopClassName="custom-desktop-class"
-                    mobileClassName="custom-mobile-class"
-                  /> */}
-
                 </div>
               </div>
             </div>

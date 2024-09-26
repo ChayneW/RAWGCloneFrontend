@@ -2,7 +2,7 @@ import React from 'react'
 
 const LoaderUI = () => {
   return (
-    <div>
+    <div className='flex justify-center'>
         {/* /* From Uiverse.io by david-mohseni */}
         {/* <div className="loader">
             <div className="bar1"></div>

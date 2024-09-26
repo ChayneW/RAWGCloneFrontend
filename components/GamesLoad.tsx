@@ -153,12 +153,13 @@ const GamesLoad = () => {
               </div>
             )}
             <div className="grid z-20 text-center py-2">
-              <h1 className="text-white text-2xl">{game.name}</h1>
+              <h1 className="text-white text-xl">{game.name}</h1>
               <div className='px-5'>
                 <div className='flex py-2'>
                    {game.parent_platforms.map((platform) => (
                     <div key={platform.platform.id} className='mr-2'>
                       <Image
+                        priority
                         src={platformRef[platform.platform.slug] || '/icons/web-icon.svg'}
                         alt={platform.platform.name}
                         width={20}
@@ -183,7 +184,15 @@ const GamesLoad = () => {
                     <p>{game.reviews_count}</p>
                   </div>
                   <hr />
-                  <p>Genres: {game.genres.map((genre) => genre.name).join(', ')}</p>
+                  <div className='flex justify-between'>
+                    <p>Genres:</p>
+                    {
+                      game.genres.length > 4 
+                      ? <p>{game.genres.slice(0, -1).map((genre:any) => genre.name).join(', ')}</p> 
+                      : <p>{game.genres.map((genre) => genre.name).join(', ')}</p>
+                    }
+                  </div>
+                  {/* <p>Genres: {game.genres.map((genre) => genre.name).join(', ')}</p> */}
                 </div> 
               </div>
             </div>
