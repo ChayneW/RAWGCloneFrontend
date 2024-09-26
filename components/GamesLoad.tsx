@@ -97,7 +97,7 @@ const GamesLoad = () => {
       setPage((prevPage) => prevPage + 1);
     }
   // }, [inView, isLoading, isFetchingMoreGames]);
-  }, [inView, isFetchingMoreGames]);
+  }, [inView, isFetchingMoreGames, page]);
 
   // Fetch games when page number changes
   useEffect(() => {
@@ -191,7 +191,7 @@ const GamesLoad = () => {
                     <p>Genres:</p>
                     {
                       game.genres.length > 4 
-                      ? <p>{game.genres.slice(0, -1).map((genre:any) => genre.name).join(', ')}</p> 
+                      ? <p>{game.genres.slice(0, -1).map((genre: Genre) => genre.name).join(', ')}</p> 
                       : <p>{game.genres.map((genre) => genre.name).join(', ')}</p>
                     }
                   </div>
