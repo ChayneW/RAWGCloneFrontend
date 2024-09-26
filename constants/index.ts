@@ -1,3 +1,5 @@
-export const heroVids =[
-    '/'
-]
+export const dateConvert = (dateString:string) => {
+    const options: Intl.DateTimeFormatOptions = {year: 'numeric', month: 'long', day: 'numeric' };
+    const date = new Date(dateString);
+    return date.toLocaleDateString(undefined, options)
+  }

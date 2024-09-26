@@ -7,6 +7,7 @@ import GameModal from '@/components/GameModal';
 import ScreenshotCarousel from '@/components/ScreenshotCarousel';
 import LoaderUI from './ui/LoaderUI';
 import { AnimatedTooltipPreview } from './PeopleLine';
+import { dateConvert } from '@/constants';
 
 interface Game {
   id: number;
@@ -60,6 +61,8 @@ const platformRef: {[key: string] : string} = {
   xbox:"/icons/xbox-icon.svg",
   // :"/icons/"
 } 
+
+
 const GamesLoad = () => {
   const [games, setGames] = useState<Game[]>([]);
   const [selectedGameId, setSelectedGameId] = useState<number | null>(null);
@@ -173,8 +176,8 @@ const GamesLoad = () => {
                 </div>
                 <div className='grid py-2 gap-2'>
                   <div className="games-load-details">
-                    <p>released:</p>
-                    <p>{game.released}</p>
+                    <p>Released:</p>
+                    <p>{dateConvert(game.released)}</p>
                   </div>
                   <hr />
                   <div className="games-load-details">
