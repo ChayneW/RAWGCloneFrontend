@@ -185,7 +185,7 @@ const SkeletonFour = () => {
     >
       <motion.div
         variants={first}
-        className="h-full w-1/3 rounded-2xl bg-white p-4 dark:bg-black dark:border-white/[0.1] border border-neutral-200 flex flex-col items-center justify-center"
+        className="h-full w-1/3 rounded-2xl bg-white p-4 dark:bg-black dark:border-white/[0.1] border border-neutral-300 flex flex-col items-center justify-center"
       >
         <Image
           src="https://pbs.twimg.com/profile_images/1417752099488636931/cs2R59eW_400x400.jpg"
@@ -201,7 +201,7 @@ const SkeletonFour = () => {
           Most Eliminations
         </p>
       </motion.div>
-      <motion.div className="h-full relative z-20 w-1/3 rounded-2xl bg-white p-4 dark:bg-black dark:border-white/[0.1] border border-neutral-200 flex flex-col items-center justify-center">
+      <motion.div className="h-full relative z-20 w-1/3 rounded-2xl bg-white p-4 dark:bg-black dark:border-white/[0.1] border border-neutral-300 flex flex-col items-center justify-center">
         <Image
           src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3534&q=80"
           alt="avatar"
@@ -218,7 +218,7 @@ const SkeletonFour = () => {
       </motion.div>
       <motion.div
         variants={second}
-        className="h-full w-1/3 rounded-2xl bg-white p-4 dark:bg-black dark:border-white/[0.1] border border-neutral-200 flex flex-col items-center justify-center"
+        className="h-full w-1/3 rounded-2xl bg-white p-4 dark:bg-black dark:border-white/[0.1] border border-neutral-300 flex flex-col items-center justify-center"
       >
         <Image
           src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3540&q=80"
@@ -272,7 +272,7 @@ const SkeletonFive = () => {
     >
       <motion.div
         variants={variants}
-        className="flex flex-row rounded-2xl border border-neutral-100 dark:border-white/[0.2] p-2  items-start space-x-2 bg-white dark:bg-black"
+        className="flex flex-row rounded-2xl border border-neutral-600 dark:border-white/[0.2] p-2  items-start space-x-2 bg-blue-400 dark:bg-black"
       >
         <Image
           src="https://pbs.twimg.com/profile_images/1417752099488636931/cs2R59eW_400x400.jpg"
@@ -281,18 +281,18 @@ const SkeletonFive = () => {
           width="100"
           className="rounded-full h-10 w-10"
         />
-        <h1 className="text-xs text-neutral-500">
+        <h1 className="text-xs text-black">
           Who&apos;s Live:
         </h1>
       </motion.div>
 
       <motion.div
         variants={variantsSecond}
-        className="flex flex-row rounded-full border border-neutral-100 dark:border-white/[0.2] p-2 items-center justify-end space-x-2 w-3/4 ml-auto bg-white dark:bg-black"
+        className="flex flex-row rounded-full border border-neutral-600 dark:border-white/[0.2] p-2 items-center justify-end space-x-2 w-3/4 ml-auto bg-[#a20340] dark:bg-black"
       >
         <div>
-          <p className="text-xs text-neutral-500">John Playing:</p>
-          <p className="text-xs text-neutral-500">Black Ops 6</p>
+          <p className="text-xs text-black">John Playing:</p>
+          <p className="text-xs text-black">Black Ops 6</p>
         </div>
         <div>
           <Image
@@ -307,11 +307,11 @@ const SkeletonFive = () => {
 
       <motion.div
         variants={variantsSecond}
-        className="flex flex-row rounded-full border border-neutral-100 dark:border-white/[0.2] p-2 items-center justify-end space-x-2 w-3/4 ml-auto bg-white dark:bg-black"
+        className="flex flex-row rounded-full border border-neutral-100 dark:border-white/[0.2] p-2 items-center justify-end space-x-2 w-3/4 ml-auto bg-[#3ccdac] dark:bg-black"
       >
         <div>
-          <p className="text-xs text-neutral-500">Phil Playing:</p>
-          <p className="text-xs text-neutral-500">Halo Reach</p>
+          <p className="text-xs text-black">Phil Playing:</p>
+          <p className="text-xs text-black">Halo Reach</p>
         </div>
         <div>
           <Image
@@ -326,11 +326,11 @@ const SkeletonFive = () => {
 
       <motion.div
         variants={variantsSecond}
-        className="flex flex-row rounded-full border border-neutral-100 dark:border-white/[0.2] p-2 items-center justify-end space-x-2 w-3/4 ml-auto bg-white dark:bg-black"
+        className="flex flex-row rounded-full border border-neutral-100 dark:border-white/[0.2] p-2 items-center justify-end space-x-2 w-3/4 ml-auto bg-[#01a20f] dark:bg-black"
       >
         <div>
-          <p className="text-xs text-neutral-500">Sarah Playing:</p>
-          <p className="text-xs text-neutral-500">Tekken 8</p>
+          <p className="text-xs text-black">Sarah Playing:</p>
+          <p className="text-xs text-black">Tekken 8</p>
         </div>
         {/* <div className="h-6 w-6 rounded-full bg-gradient-to-r from-pink-500 to-violet-500 flex-shrink-0" /> */}
         <div>

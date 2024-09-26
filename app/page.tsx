@@ -12,6 +12,9 @@ export default async function Home() {
           <Hero/>
           <BentoGridThirdDemo/>
         </div>
+        <div>
+          <h1 className="text-white text-center text-2xl">Trending:</h1>
+        </div>
         <GamesLoad/>
     </div>
   );
