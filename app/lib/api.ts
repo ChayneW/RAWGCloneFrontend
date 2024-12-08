@@ -9,7 +9,7 @@ export const fetchGames = async (page = 1) => {
     try {
         // console.log(`api.ts link: ${process.env.NEXT_PUBLIC_RAILWAY_API_URL}?page=${page}`);
         // console.log(`api.ts link: ${baseURL}?page=${page}`);
-        console.log(`fetching details from: ${url}`)
+        // console.log(`fetching details from: ${url}`)
 
         // const response = await fetch(`${process.env.NEXT_PUBLIC_RAILWAY_API_URL}?page=${page}`); // Update URL if needed
         // const response = await fetch(`${baseURL}?page=${page}`); // Update URL if needed
