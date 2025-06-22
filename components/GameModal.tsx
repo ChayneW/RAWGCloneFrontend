@@ -76,10 +76,10 @@ const GameModal = ({ gameId, onClose, screenshots }: GameModalProps) => {
   const getData = useCallback(async () => {
     try {
       // setLoading(true);
-      console.log('inside GAMEMODAL, PASSING ID:', gameId);
+      // console.log('inside GAMEMODAL, PASSING ID:', gameId);
       const details = await fetchDetails(gameId);
       console.log('FINISHED making fetchDetails() call:');
-      console.log("details:", details);
+      // console.log("details:", details);
       setGameDetail(details);
     } catch (err: unknown) {
       if (err instanceof Error) {
