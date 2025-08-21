@@ -30,3 +30,4 @@ yarn-error.log*
 # Miscellaneous
 *.sublime-project
 *.sublime-workspace
+test-rawg.txt
