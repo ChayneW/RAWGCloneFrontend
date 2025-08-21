@@ -3,9 +3,24 @@
 // const baseURL= process.env.NEXT_PUBLIC_RAILWAY_API_URL
 const baseURL = process.env.RAILWAY_API_URL;
 
+//testing new implimentation:
+const rawgURL = process.env.BACKUP_URL;
+const RAWG_API_KEY = process.env.RAWG_API_KEY;
+
+
+
 // export const fetchGames = async () => {
 export const fetchGames = async (page = 1) => {
+    console.log("inside fetch");
+    console.log(rawgURL);
+    console.log(RAWG_API_KEY);
+
+    
     const url = `${baseURL}?page=${page}`;
+    
+    // const testURL = `${rawgURL}?key=${RAWG_API_KEY}&page=${page}&page_size=50`
+    const testURL = `$https://api.rawg.io/api/games?key=${RAWG_API_KEY}&page=${page}&page_size=50`
+
     try {
         // console.log(`api.ts link: ${process.env.NEXT_PUBLIC_RAILWAY_API_URL}?page=${page}`);
         // console.log(`api.ts link: ${baseURL}?page=${page}`);
@@ -13,7 +28,12 @@ export const fetchGames = async (page = 1) => {
 
         // const response = await fetch(`${process.env.NEXT_PUBLIC_RAILWAY_API_URL}?page=${page}`); // Update URL if needed
         // const response = await fetch(`${baseURL}?page=${page}`); // Update URL if needed
-        const response = await fetch(url);
+        
+
+        //original
+        // const response = await fetch(url);
+
+        const response = await fetch(testURL);
 
         if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -29,7 +49,11 @@ export const fetchGames = async (page = 1) => {
 
 export const fetchDetails = async (id: number) => {
     
-    const url = `${baseURL}/${id}`;
+    // const url = `${baseURL}/${id}`;
+
+    const testURL = `${rawgURL}?key=${RAWG_API_KEY}&page=${page}&page_size=50`
+    
+
     // console.log('Fetching details from URL:', url);
     
     try {
