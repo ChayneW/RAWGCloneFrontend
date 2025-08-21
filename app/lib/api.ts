@@ -15,11 +15,11 @@ export const fetchGames = async (page = 1) => {
     console.log(rawgURL);
     console.log(RAWG_API_KEY);
 
-    
+
     const url = `${baseURL}?page=${page}`;
     
     // const testURL = `${rawgURL}?key=${RAWG_API_KEY}&page=${page}&page_size=50`
-    const testURL = `$https://api.rawg.io/api/games?key=${RAWG_API_KEY}&page=${page}&page_size=50`
+    const testURL = `https://api.rawg.io/api/games?key=${RAWG_API_KEY}&page=${page}&page_size=50`
 
     try {
         // console.log(`api.ts link: ${process.env.NEXT_PUBLIC_RAILWAY_API_URL}?page=${page}`);
