@@ -42,7 +42,7 @@ export const fetchGames = async (page = 1) => {
     }
 };
 
-export const fetchDetails = async (id: string) => {
+export const fetchDetails = async (id: number) => {
     
     // Original
     // const url = `${baseURL}/${id}`;

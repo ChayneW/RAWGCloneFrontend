@@ -1,7 +1,7 @@
 import {NextResponse} from "next/server";
 
 
-export async function GET(req: Request, {params}: {params:{id: string}}) {
+export async function GET(req: Request, {params}: {params:{id: number}}) {
 	const {id} = params;
 
 	const RAILWAY_API = process.env.RAILWAY_API_URL;
