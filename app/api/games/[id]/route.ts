@@ -9,7 +9,7 @@ export async function GET(req: Request, {params}: {params:{id: string}}) {
 	const backupURL = process.env.BACKUP_URL;
 
 	try {
-		const railwayRes = await fetch(`${RAILWAY_API}?page=${page}`, {
+		const railwayRes = await fetch(`${RAILWAY_API}?page=${id}`, {
 			cache: "no-store",
 		});
 
