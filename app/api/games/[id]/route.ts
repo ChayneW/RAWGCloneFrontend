@@ -16,7 +16,7 @@ export async function GET(req: Request, {params}: {params:{id: number}}) {
 		if(railwayRes.ok) {
 			const data = await railwayRes.json();
 			if(data) console.log("railway endpoint/[id] success");
-			console.log(data);
+			// console.log(data);
 			return NextResponse.json(data);
 		}
 	}catch (err) {

@@ -12,7 +12,7 @@ export async function GET(request: Request) {
 	const backupURL = process.env.BACKUP_URL;
 
 	let data;
-	// let games: any[] = [];
+	let source = "railway";
 
 
 	try {
@@ -46,10 +46,10 @@ export async function GET(request: Request) {
 		data = await rawgRes.json();
 		if(data) console.log("RAWG backup GET/ success");
 
-		// games = data.results;
+		source = "rawg";
 	}
 
-	return NextResponse.json(data);
-	// return NextResponse.json({results : games});
+	// return NextResponse.json(data);
+	return NextResponse.json({source, data});
 
 }

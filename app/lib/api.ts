@@ -18,25 +18,39 @@ export const fetchGames = async (page = 1) => {
     const url = `/api/games?page=${page}`;
 
     try {
-        // console.log(`api.ts link: ${process.env.NEXT_PUBLIC_RAILWAY_API_URL}?page=${page}`);
-        // console.log(`api.ts link: ${baseURL}?page=${page}`);
-        // console.log(`fetching details from: ${url}`)
 
-        //original
-        const response = await fetch(url);
+        // //original
+        // const response = await fetch(url);
 
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        console.log('api call to c#:')
-        const data = await response.json();
+        // if (!response.ok) {
+        //     throw new Error('Network response was not ok');
+        // }
+        // console.log('api call to c#:')
+        // const data = await response.json();
 
-        console.log(data);
+        // console.log(data);
 
-        // possible problem, wasn't needed in original code = (data) .
+        // // possible problem, wasn't needed in original code = (data) .
         
-        // return data.results; //works with rawg fine
-        return data // works with railway
+        // // return data.results; //works with rawg fine
+        // return data // works with railway
+
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("Network response was not ok");
+
+        const { source, data } = await response.json();
+
+        console.log("api source:", source);
+
+        // If railway, return the whole data
+        // If rawg, return results
+        if (source === "railway") {
+          return data;
+        } else if (source === "rawg") {
+          return data.results;
+        }
+
+    return [];
 
     } catch (error) {
         console.error('Error fetching games:', error);
