@@ -9,12 +9,14 @@ export async function GET(req: Request, {params}: {params:{id: number}}) {
 	const backupURL = process.env.BACKUP_URL;
 
 	try {
-		const railwayRes = await fetch(`${RAILWAY_API}?page=${id}`, {
+		const railwayRes = await fetch(`${RAILWAY_API}/${id}`, {
 			cache: "no-store",
 		});
 
 		if(railwayRes.ok) {
 			const data = await railwayRes.json();
+			if(data) console.log("railway endpoint/[id] success");
+			console.log(data);
 			return NextResponse.json(data);
 		}
 	}catch (err) {
@@ -30,7 +32,7 @@ export async function GET(req: Request, {params}: {params:{id: number}}) {
 
 		if (rawgRes.ok) {
 			const data = await rawgRes.json();
-			console.log("GET FETCH id good, data below:");
+			console.log("RAWG backup endpoint/[id] success");
 			// console.log(data);
 			return NextResponse.json(data);
 		}

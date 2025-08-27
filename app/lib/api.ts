@@ -31,10 +31,12 @@ export const fetchGames = async (page = 1) => {
         console.log('api call to c#:')
         const data = await response.json();
 
-        // console.log(data.results);
+        console.log(data);
 
         // possible problem, wasn't needed in original code = (data) .
-        return data.results;
+        
+        // return data.results; //works with rawg fine
+        return data // works with railway
 
     } catch (error) {
         console.error('Error fetching games:', error);
@@ -49,7 +51,7 @@ export const fetchDetails = async (id: number) => {
 
     const url = `/api/games/${id}`;
 
-    // console.log('Fetching details from URL:', url);
+    console.log('Fetching details from URL:', url);
     
     try {
         // const response = await fetch(`${process.env.NEXT_PUBLIC_RAILWAY_API_URL}/${id}`);
@@ -60,8 +62,11 @@ export const fetchDetails = async (id: number) => {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        // console.log('Received data:', data);
-        return data;
+        console.log('Received data:');
+        console.log(data);
+
+        return data; //works with rawg fine
+
     } catch (error) {
         console.error('Error fetching game details:', error);
         return null;

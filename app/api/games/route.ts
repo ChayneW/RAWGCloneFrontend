@@ -12,6 +12,7 @@ export async function GET(request: Request) {
 	const backupURL = process.env.BACKUP_URL;
 
 	let data;
+	// let games: any[] = [];
 
 
 	try {
@@ -24,7 +25,9 @@ export async function GET(request: Request) {
 
 
 		data = await railwayRes.json();
-		if(data) console.log("railway success");
+		if(data) console.log("railway endpoint /GET success");
+
+		// games = data;
 
 	} catch (err) {
 		// console.warn("railway failed, falling back to secondary:", err);
@@ -41,8 +44,12 @@ export async function GET(request: Request) {
 		}
 
 		data = await rawgRes.json();
+		if(data) console.log("RAWG backup GET/ success");
+
+		// games = data.results;
 	}
 
 	return NextResponse.json(data);
+	// return NextResponse.json({results : games});
 
 }
